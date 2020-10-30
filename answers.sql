@@ -298,3 +298,58 @@ orders made by 'pclark74@gmail.com'. Use a subselect to do this.
 
 
 SELECT id, status, order_total FROM orders WHERE customer_id = (SELECT id FROM customers WHERE email = 'pclark74@gmail.com');
+
+
+==========
+22
+
+-----
+
+Write a query that shows the id, status, and order total for all orders
+made by 'pclark74@gmail.com'. Use a join to do this.
+
+-----
+
+
+SELECT orders.id, status, order_total FROM orders JOIN customers ON orders.customer_id = customers.id  WHERE  customers.email ='pclark74@gmail.com';
+
+
+==========
+23
+
+-----
+
+Write a query that shows all columns in the order_items table for order #2725.
+
+-----
+
+
+SELECT * FROM order_items WHERE order_id=2725;
+
+
+==========
+24
+
+-----
+
+Write a query that shows the common_name, melon_type, quantity,
+unit_price and total_price for all the melons in order #2725.
+
+-----
+
+
+SELECT common_name, melon_type, order_items.quantity, order_items.unit_price, order_items.total_price FROM melons JOIN order_items ON melons.id=order_items.melon_id WHERE order_items.order_id=2725;
+
+
+==========
+25
+
+-----
+
+Write a query that shows the total amount of revenue that comes from
+internet orders.
+
+-----
+
+
+SELECT SUM(order_total) AS total_rev FROM orders WHERE salesperson_id IS NULL;
